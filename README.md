@@ -1,1 +1,1 @@
-# car-segmentation
+# Car segmentation
