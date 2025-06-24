@@ -23,7 +23,7 @@ model = smp.Unet(encoder_name="resnet34", encoder_weights="imagenet", in_channel
 - test: 15%
 - validation: 15%
 
-Maybe 80/10/10 had been better considering its quite small dataset, but i think its okay, at least after augmentation.
+Maybe 80/10/10 had been better considering its quite small dataset, but i think its okay.
 
 ### 2: Model (Unet)
 
