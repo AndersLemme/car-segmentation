@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torchvision.transforms.functional as TF #resize, tensor -> PIL, rotate, etc
 
-
 class DoubleConv(nn.Module): #2 conv in each down/up block, encoding/decoding
     def __init__(self, in_channels, out_channels):
         super(DoubleConv, self).__init__()
@@ -63,7 +62,7 @@ class unet(nn.Module):
         return self.OutputLayer(x)
 
 def test():
-    x = torch.randn((3, 1, 160, 160 ))
+    x = torch.randn((3, 1, 161, 161 ))
     model = unet(in_channels=1, out_channels=1)
     pred = model(x)
     print(pred.shape)
@@ -76,46 +75,3 @@ if __name__ == "__main__":
 
 
 
-
-
-
-"""
-import segmentation_models_pytorch as smp
-import torch
-import torch.nn as nn
-
-ENCODER = "resnet34"
-ENC_WT  = "imagenet"
-CLASSES = ["bg","car","wheel","light","window"]
-
-model = smp.Unet(
-    encoder_name=ENCODER,
-    encoder_weights=ENC_WT,
-    in_channels=3,
-    classes=len(CLASSES),
-)
-
-class ComboLoss(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.ce   = nn.CrossEntropyLoss()
-        self.dice = smp.losses.DiceLoss("multiclass")
-    def forward(self, preds, targets):
-        return 0.7*self.ce(preds, targets) + 0.3*self.dice(preds, targets)
-
-criterion = ComboLoss()
-optimizer = torch.optim.AdamW(model.parameters(), lr=0.004, weight_decay=0.004)
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", patience=3)
-
-# Training loop omitted for brevity – run 30 epochs, early‑stop on val mIoU.
-"""
-
-
-#....................................................................
-"""
-import torch
-import torch.nn as nn
-import torchvision.transforms.functional as tf
-
-class DoubleConv(nn.Module):
-"""
