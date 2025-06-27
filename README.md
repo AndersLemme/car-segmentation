@@ -1,5 +1,9 @@
 # Car segmentation
 
+## To-Do
+ - Split train and inference into two seperate scripts. (load model and use on testset)
+ - Improve test/inference script, with output prediciton figures, loading model etc.
+
 ## File descriptions:
 
 - imgSize.py: outputs image sizes, Just used for checking.
